@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knimeNode icon="./default.png" type="Predictor" xmlns="http://knime.org/node/v2.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://knime.org/node/v2.10 http://knime.org/node/v2.10.xsd">
+    <name>NaivePhilipp</name>
+    
+    <shortDescription>
+        Implementation of the Naive Bayes concept in KNIME with an adaption to streaming scenario.
+    </shortDescription>
+    
+    <fullDescription>
+        <intro>This node implements the NaiveBayes concept for an offline and online scenario. Predictions can be made while streaming and we can keep track of the development of the accuracy. The node outputs the original data, with the addition of the prediction and the current accuracy (in online scenario).</intro>
+        
+        
+        <option name="Class variable">Class variable (categorical) of the dataset, which will be predicted by Naive Bayes.</option>
+        <option name="LaPlace Correction">Value of the LaPlace correction value. This is the number of observed values, which we assume to avoid zero probabilities.</option>
+        <option name="Row number, from which we start predictions (online)">The row number from which the node starts predicting. This option is only important for streaming scenarios. Beforehand, the node only learns, and skips the predicting part.</option>
+        <option name="Train-Share (offline)">This node includes a partitioning function (from top; not randomized). It takes the share of the original dataset, which should represent our train-dataset. This is only relevant for an offline scenario.</option>
+
+    </fullDescription>
+    
+    <ports>
+        <inPort index="0" name="Datatable Input">Data table. Make sure that the class variable a String variable.</inPort>
+        <outPort index="0" name="Datatable Output">Original data table with appended columns "Prediction" and "Accuracy". Note: "Accuracy" is only meaningful in the online scenario.</outPort>
+    </ports>   
+</knimeNode>
